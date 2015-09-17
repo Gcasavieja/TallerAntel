@@ -1,8 +1,9 @@
 package datatypes;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class DataTicket {
+public class DataTicket implements Serializable{
 	private int idTicket;
 	private int idAgencia;
 	private String matricula;

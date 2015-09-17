@@ -1,14 +1,35 @@
 package datatypes;
 
-public class DataResultadoTicket {
-	private String prueba;
+import java.io.Serializable;
 
-	public String getPrueba() {
-		return prueba;
+public class DataResultadoTicket implements Serializable{
+	
+	private String mensaje;
+	private boolean ok;
+	
+	public DataResultadoTicket(String mensaje, boolean ok) {
+		super();
+		this.mensaje = mensaje;
+		this.ok = ok;
 	}
 
-	public void setPrueba(String prueba) {
-		this.prueba = prueba;
+	public String getMensaje() {
+		return mensaje;
 	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
+	public boolean isOk() {
+		return ok;
+	}
+
+	public void setOk(boolean ok) {
+		this.ok = ok;
+	}
+	
+	
+	
 	
 }
