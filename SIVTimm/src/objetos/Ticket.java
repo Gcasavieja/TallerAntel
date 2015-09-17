@@ -1,8 +1,8 @@
-package datatypes;
+package objetos;
 
 import java.util.Date;
 
-public class DataTicket {
+public class Ticket {
 	private int idTicket;
 	private int idAgencia;
 	private String matricula;
@@ -14,7 +14,7 @@ public class DataTicket {
 	private String estado;
 	private int idTarifa;
 	
-	public DataTicket(int idTicket, int idAgencia, String matricula,
+	public Ticket(int idTicket, int idAgencia, String matricula,
 			Date fecha_venta, Date fecha_inicio, Date fecha_fin,
 			double importe, String codigoAnulacion, String estado, int idTarifa) {
 		super();
@@ -90,5 +90,4 @@ public class DataTicket {
 	public void setIdTarifa(int idTarifa) {
 		this.idTarifa = idTarifa;
 	}
-	
 }
