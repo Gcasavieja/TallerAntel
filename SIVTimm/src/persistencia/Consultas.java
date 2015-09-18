@@ -4,7 +4,7 @@ public class Consultas {
 
 	public String insertTicket()
 	{
-		String query = "INSERT INTO ticket VALUES ()";
+		String query = "INSERT INTO TABLE_NAME VALUES (?,?,?,?,?,?,?,?,?);";
 		return query;
 	}
 }

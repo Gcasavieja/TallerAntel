@@ -1,7 +1,7 @@
 package datatypes;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 public class DataTicket implements Serializable{
 	private int idTicket;

@@ -26,10 +26,11 @@ public class FachadaPersistencia {
 		try {
 
 			InitialContext context = new InitialContext();
-			DataSource dataSource = (DataSource) context
-					.lookup("java:jboss/datasources/mysqlDS");
-			cn = dataSource.getConnection();
 			consultas = new Consultas();
+			DataSource dataSource = (DataSource) context
+					.lookup("java:/mysqlDS");
+			cn = dataSource.getConnection();
+			
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -44,7 +45,17 @@ public class FachadaPersistencia {
 
 		String sql = consultas.insertTicket();
 		PreparedStatement comando = conexion.prepareStatement(sql);
-
+		
+		comando.setInt(1, dt.getIdTicket());
+		comando.setInt(2, dt.getIdAgencia());
+		comando.setString(3, dt.getMatricula());
+		comando.setDate(4, dt.getFecha_inicio());
+		comando.setDate(5, dt.getFecha_fin());
+		comando.setDate(6, dt.getFecha_venta());
+		comando.setDouble(7, dt.getImporte());
+		comando.setString(8, dt.getCodigoAnulacion());
+		comando.setString(9, dt.getEstado());
+		
 		comando.execute();
 
 		cn.close();
