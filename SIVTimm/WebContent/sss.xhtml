@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head></h:head> 
+<body> 
+
+<h:form>
+
+	<h:outputText>Su nombre</h:outputText>
+	<h:inputText id="nombre" value="#{inicioBean.nombre}" required="true"/>
+	<h:message for="nombre"/>
+	
+	<h:commandButton action="ok" value="Ingresar" />
+	
+	
+
+</h:form>
+
+</body> 
+</html>

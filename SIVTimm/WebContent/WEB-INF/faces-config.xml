@@ -4,5 +4,26 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
+	<managed-bean>
+		<managed-bean-name>agenciaBean</managed-bean-name>
+		<managed-bean-class>beans.AgenciaBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	  <navigation-rule>
+  <from-view-id>/altaagencia.xhtml</from-view-id>
+  <navigation-case>
+   <from-action>#{agenciaBean.ingresarAgencia()}</from-action>
+   <from-outcome>inicio</from-outcome>
+   <to-view-id>/inicio.xhtml</to-view-id>
+   <redirect />
+  </navigation-case>
+  <navigation-case>
+   <from-action>#{agenciaBean.ingresarAgencia()}</from-action>
+   <from-outcome>altaagencia</from-outcome>
+   <to-view-id>/altaagencia.xhtml</to-view-id>
+   <redirect />
+  </navigation-case>
+ </navigation-rule>
 
 </faces-config>

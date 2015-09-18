@@ -7,4 +7,10 @@ public class Consultas {
 		String query = "INSERT INTO TABLE_NAME VALUES (?,?,?,?,?,?,?,?,?);";
 		return query;
 	}
+	
+	public String insertAgencia()
+	{
+		String query = "INSERT INTO agencia VALUES (null,?,?,?);";
+		return query;
+	}
 }

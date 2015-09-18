@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14425928637860" configfile="/SIVTimm/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="altaagencia.xhtml" x="179" y="244" id="pf14425957863011" outlinks="pf14425957863012 pf14425958039084" inlinks="pf14425958039084" path="/altaagencia.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inicio.xhtml" x="456" y="187" id="pf14425957863013" inlinks="pf14425957863012" path="/inicio.xhtml"/>
+  <links id="pf14425957863012" target="pf14425957863013" source="pf14425957863011" outcome="inicio"/>
+  <links id="pf14425958039084" target="pf14425957863011" source="pf14425957863011" outcome="altaagencia">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+</pageflow:Pageflow>

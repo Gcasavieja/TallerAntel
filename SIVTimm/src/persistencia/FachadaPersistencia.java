@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import datatypes.DataAgencia;
 import datatypes.DataTicket;
 
 
@@ -28,7 +29,7 @@ public class FachadaPersistencia {
 			InitialContext context = new InitialContext();
 			consultas = new Consultas();
 			DataSource dataSource = (DataSource) context
-					.lookup("java:/mysqlDS");
+					.lookup("java:jboss/datasources/mysqlDS");
 			cn = dataSource.getConnection();
 			
 		} catch (NamingException e) {
@@ -60,6 +61,33 @@ public class FachadaPersistencia {
 
 		cn.close();
 		
+	}
+	
+	public int altaAgencia(DataAgencia da) throws SQLException
+	{
+		int claveGenerada=-1;
+		Connection conexion = cn;
+
+		String sql = consultas.insertAgencia();
+		PreparedStatement  comando= conexion.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+		
+		comando.setString(1, da.getNombre());
+		comando.setString(2, da.getDireccion());
+		comando.setString(3, da.getTelefono());
+		
+		comando.execute();
+		
+		// Se obtiene la clave generada
+		ResultSet rs = comando.getGeneratedKeys();
+		while (rs.next()) {
+		   claveGenerada = rs.getInt(1);
+		   
+		}
+		
+
+		cn.close();
+		
+		return claveGenerada;
 	}
 
 	public boolean existeAgencia(int idAgencia) {
