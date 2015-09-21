@@ -15,6 +15,10 @@ public class DataTicket implements Serializable{
 	private String estado;
 	private int idTarifa;
 	
+	public DataTicket(){
+		
+	}
+	
 	public DataTicket(int idTicket, int idAgencia, String matricula,
 			Date fecha_venta, Date fecha_inicio, Date fecha_fin,
 			double importe, String codigoAnulacion, String estado, int idTarifa) {

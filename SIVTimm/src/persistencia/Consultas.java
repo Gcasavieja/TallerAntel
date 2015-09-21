@@ -1,12 +1,10 @@
 package persistencia;
 
-
-
 public class Consultas {
 
 	public String insertTicket()
 	{
-		String query = "INSERT INTO TABLE_NAME VALUES (?,?,?,?,?,?,?,?,?);";
+		String query = "INSERT INTO ticket VALUES (null,?,?,?,?,?,?,?,?);";
 		return query;
 	}
 	
@@ -25,16 +23,6 @@ public class Consultas {
 	public String existAgenciaId() {
 		// TODO Auto-generated method stub
 		String query = "SELECT * FROM agencia where id_agencia = ?;";
-		return query;
-	}
-	
-	public String obtenerAgenciasNombre(){
-		String query = "SELECT * FROM agencia where nombre like ?;";
-		return query;
-	}
-	
-	public String obtenerTodasLasAgencias(){
-		String query = "SELECT * FROM agencia;";
 		return query;
 	}
 }

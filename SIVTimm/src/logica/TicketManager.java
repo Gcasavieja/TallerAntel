@@ -11,7 +11,7 @@ public class TicketManager {
 	private FachadaPersistencia persistencia;
 	
 	public TicketManager(){
-		
+		persistencia = new FachadaPersistencia();
 	}
 	
 	public DataResultadoTicket altaTicket(DataTicket dtEntrada)

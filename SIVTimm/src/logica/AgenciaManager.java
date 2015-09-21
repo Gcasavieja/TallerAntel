@@ -1,8 +1,8 @@
 package logica;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import objetos.Agencia;
 import datatypes.DataAgencia;
 import datatypes.DataResultadoAgencia;
 import persistencia.FachadaPersistencia;
@@ -19,10 +19,11 @@ public class AgenciaManager {
 	public DataResultadoAgencia altaAgencia(DataAgencia da)
 	{
 		DataResultadoAgencia dra = null;
+		Agencia ag = new Agencia(da.getNombre(),da.getDireccion(),da.getTelefono());
 		try {
 			int idAgencia = -2;
 			if(!persistencia.existeAgencia(da.getNombre(),da.getTelefono()))
-				idAgencia = persistencia.altaAgencia(da);
+				idAgencia = persistencia.altaAgencia(ag);
 			
 			dra = new DataResultadoAgencia(idAgencia, true);
 		} catch (SQLException e) {
@@ -32,14 +33,4 @@ public class AgenciaManager {
 		
 		return dra;
 	}
-	
-	public ArrayList<DataAgencia> obtenerAgenciasNombre(String nombre) throws SQLException
-	{
-		ArrayList<DataAgencia> listaAgencias=new ArrayList<DataAgencia>();
-		listaAgencias=persistencia.obtenerAgenciasNombre(nombre);
-		
-		return listaAgencias;
-	}
-	
-	
 }

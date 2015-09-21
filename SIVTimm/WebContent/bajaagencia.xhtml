@@ -2,10 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"> 
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
 
-<h:head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
@@ -23,8 +22,8 @@
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
-</h:head> 
-<h:body> 
+</head> 
+<body> 
 <div class="navbar navbar-inverse navbar-fixed-top" >
         <div class="container">
             <div class="navbar-header">
@@ -56,79 +55,6 @@
         </div>
     </div>
    <!--/.NAVBAR END-->
-<section id="home" class="head-main-img">
-   <p:growl id="growl" showDetail="true" life="3000" redisplay="false" />
-         
-               <div class="container">
-           <div class="row text-center pad-row" >
-            <div class="col-md-12">
 
-				
-
-				<h:form role="form" id="myFormBajaAgencia">
-				
-				
-					<div class="form-group">
-						<h:outputLabel class="control-label col-sm-2" for="nombre">Baja Agencia</h:outputLabel>
-							
-							
-						<h:inputText class="form-control" 
-													name="nombre" value="#{agenciaBean.nombre}" id="nombre"
-													required="true"
-													requiredMessage="Nombre de la agencia:"
-													label="nombre"></h:inputText>
-						
-					</div>
-															
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-8">
-							<h:commandButton class="btn btn-default" id="btnBuscar"
-												value="Buscar" type="submit"
-												action="#{agenciaBean.obtenerAgenciasNombre()}" update="growl"/>
-												
-						</div>
-					</div>
-				</h:form>
-
-			</div>
-			<h:dataTable value="#{agenciaBean.listaAgencias}" var="dataagencia" border="1">
-        <h:column>
-            <f:facet name="header">
-               <h:outputText value="ID"></h:outputText>
-            </f:facet>
-            <h:outputText value="#{dataagencia.idAgencia}"></h:outputText>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-               <h:outputText value="Nombre"></h:outputText>
-            </f:facet>
-            <h:outputText value="#{dataagencia.nombre}"></h:outputText>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-               <h:outputText value="Direccion"></h:outputText>
-            </f:facet>
-            <h:outputText value="#{dataagencia.direccion}"></h:outputText>
-        </h:column>
-        <h:column>
-            <f:facet name="header">
-               <h:outputText value="Telefono"></h:outputText>
-            </f:facet>
-            <h:outputText value="#{dataagencia.telefono}"></h:outputText>
-        </h:column>
- 
-        </h:dataTable>
-               </div>
-            </div>
-            </section>
-
-    <!--/.FOOTER END-->
-    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
-    <!-- CORE JQUERY  -->
-    <script src="assets/plugins/jquery-1.10.2.js"></script>
-    <!-- BOOTSTRAP SCRIPTS  -->
-    <script src="assets/plugins/bootstrap.js"></script>
-  <!-- CUSTOM SCRIPTS  -->
-    <script src="assets/js/custom.js"></script>
-</h:body> 
+</body> 
 </html>

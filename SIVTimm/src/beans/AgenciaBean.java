@@ -1,12 +1,10 @@
 package beans;
 
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+
 
 import datatypes.DataAgencia;
 import datatypes.DataResultadoAgencia;
@@ -20,15 +18,13 @@ public class AgenciaBean {
 	private String direccion;
 	private String telefono;
 	private AgenciaManager agenciaManager;
-		
+	
 	private HttpServletRequest httpServletRequest;
 	private FacesContext faceContext;
 	private FacesMessage facesMessage;
 	private String msgingresar;
-		
-	private ArrayList<DataAgencia> listaAgencias;
 	
-
+	
 	public AgenciaBean() {
 		super();
 
@@ -38,15 +34,6 @@ public class AgenciaBean {
 		httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();	
 	}
 	
-	public ArrayList<DataAgencia> getListaAgencias() {
-		return listaAgencias;
-	}
-
-
-	public void setListaAgencias(ArrayList<DataAgencia> listaAgencias) {
-		this.listaAgencias = listaAgencias;
-	}
-
 	
 	public int getId_agencia() {
 		return id_agencia;
@@ -142,18 +129,7 @@ public class AgenciaBean {
 		return resultado;
 
 	}
-	
-	public ArrayList<DataAgencia> obtenerAgenciasNombre() throws SQLException{
-		
-		
-		if (!nombre.isEmpty()){
-			listaAgencias=agenciaManager.obtenerAgenciasNombre(nombre);
-		}
-		System.out.println("cantidad de registros: "+listaAgencias.size());
-		System.out.println("id: "+ listaAgencias.get(0).getIdAgencia()+" Nombre: "+ listaAgencias.get(0).getNombre() + " Direccion: "+ listaAgencias.get(0).getDireccion()+ " Tel: "+ listaAgencias.get(0).getTelefono());
-		return listaAgencias;
-	}
-	
+
 	public void reset() {
 		nombre = "";
 		direccion = "";

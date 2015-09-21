@@ -12,20 +12,22 @@ import datatypes.DataTicket;
 @WebService
 public class WsImm {
 	
-	private AgenciaManager am;
-	private ReporteManager rm;
-	private TicketManager tm;
+//	private AgenciaManager am;
+//	private ReporteManager rm;
+//	private TicketManager tm;
 	
 	public WsImm()
 	{
-		am = new AgenciaManager();
-		rm = new ReporteManager();
-		tm = new TicketManager();
+//		am = new AgenciaManager();
+//		rm = new ReporteManager();
+//		tm = new TicketManager();
 	}
 
 	@WebMethod
 	public DataResultadoTicket altaTicket(DataTicket dt){
 		
+		System.out.println("id de la agencia: " + dt.getIdAgencia());
+		TicketManager tm = new TicketManager();
 		return tm.altaTicket(dt);
 	}
 }

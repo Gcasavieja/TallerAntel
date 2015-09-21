@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import objetos.Agencia;
 import datatypes.DataAgencia;
 import datatypes.DataTicket;
 
@@ -46,24 +47,29 @@ public class FachadaPersistencia {
 		String sql = consultas.insertTicket();
 		PreparedStatement comando = conexion.prepareStatement(sql);
 		
-		comando.setInt(1, dt.getIdTicket());
-		comando.setInt(2, dt.getIdAgencia());
-		comando.setString(3, dt.getMatricula());
-		comando.setDate(4, dt.getFecha_inicio());
-		comando.setDate(5, dt.getFecha_fin());
-		comando.setDate(6, dt.getFecha_venta());
-		comando.setDouble(7, dt.getImporte());
-		comando.setString(8, dt.getCodigoAnulacion());
-		comando.setString(9, dt.getEstado());
+		//comando.setInt(1, dt.getIdTicket());
+		comando.setInt(1, dt.getIdAgencia());
+		comando.setString(2, dt.getMatricula());
+		comando.setDate(3, dt.getFecha_inicio());
+		comando.setDate(4, dt.getFecha_fin());
+		comando.setDate(5, dt.getFecha_venta());
+		comando.setDouble(6, dt.getImporte());
+		comando.setString(7, dt.getCodigoAnulacion());
+		comando.setString(8, dt.getEstado());
 		
-		comando.execute();
-
+		ResultSet rs = comando.executeQuery();
+		while(rs.next())
+		{
+			int idTicket = rs.getInt("importe");
+			Double importe = rs.getDouble("importe");
+		}
+		
 		comando.close();
 		conexion.close();
 		
 	}
 	
-	public int altaAgencia(DataAgencia da) throws SQLException
+	public int altaAgencia(Agencia ag) throws SQLException
 	{
 		int claveGenerada=-1;
 		Connection conexion = dataSource.getConnection();
@@ -71,9 +77,9 @@ public class FachadaPersistencia {
 		String sql = consultas.insertAgencia();
 		PreparedStatement  comando= conexion.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
 		
-		comando.setString(1, da.getNombre());
-		comando.setString(2, da.getDireccion());
-		comando.setString(3, da.getTelefono());
+		comando.setString(1, ag.getNombre());
+		comando.setString(2, ag.getDireccion());
+		comando.setString(3, ag.getTelefono());
 		
 		comando.execute();
 		
@@ -136,34 +142,6 @@ public class FachadaPersistencia {
 		conexion.close();
 		
 		return existe;
-	}
-	
-	public ArrayList<DataAgencia> obtenerAgenciasNombre(String nombre) throws SQLException{
-		ArrayList<DataAgencia> listaAgencias=new ArrayList<DataAgencia>();
-		Connection conexion = dataSource.getConnection();
-		String sql = consultas.obtenerAgenciasNombre();
-		PreparedStatement  comando= conexion.prepareStatement(sql);
-		
-		System.out.println("el nombre que llega: "+nombre);
-		comando.setString(1, nombre + "%");
-		ResultSet rs = comando.executeQuery();
-		
-//		if(rs.next())
-//		{
-			//System.out.println("entró");
-			int i=0;
-			while(rs.next()){
-	
-				DataAgencia laAgencia=new DataAgencia(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4));
-				listaAgencias.add(laAgencia);
-			}
-			
-		//}
-		
-		comando.close();
-		conexion.close();
-		
-		return listaAgencias;
 	}
 	
 }
