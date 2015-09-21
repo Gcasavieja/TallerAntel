@@ -30,8 +30,8 @@ public class FachadaPersistencia {
 			context = new InitialContext();
 			consultas = new Consultas();
 			dataSource = (DataSource) context
-					//.lookup("java:jboss/datasources/mysqlDS");
-					.lookup("java:/mysqlDS");
+					.lookup("java:jboss/datasources/mysqlDS");
+					//.lookup("java:/mysqlDS");
 			
 		} catch (NamingException e) {
 			e.printStackTrace();
@@ -136,6 +136,34 @@ public class FachadaPersistencia {
 		conexion.close();
 		
 		return existe;
+	}
+	
+	public ArrayList<DataAgencia> obtenerAgenciasNombre(String nombre) throws SQLException{
+		ArrayList<DataAgencia> listaAgencias=new ArrayList<DataAgencia>();
+		Connection conexion = dataSource.getConnection();
+		String sql = consultas.obtenerAgenciasNombre();
+		PreparedStatement  comando= conexion.prepareStatement(sql);
+		
+		System.out.println("el nombre que llega: "+nombre);
+		comando.setString(1, nombre + "%");
+		ResultSet rs = comando.executeQuery();
+		
+//		if(rs.next())
+//		{
+			//System.out.println("entró");
+			int i=0;
+			while(rs.next()){
+	
+				DataAgencia laAgencia=new DataAgencia(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4));
+				listaAgencias.add(laAgencia);
+			}
+			
+		//}
+		
+		comando.close();
+		conexion.close();
+		
+		return listaAgencias;
 	}
 	
 }

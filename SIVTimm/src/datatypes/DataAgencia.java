@@ -14,6 +14,16 @@ public class DataAgencia {
 		this.direccion = direccion;
 		this.telefono = telefono;
 	}
+	
+	public DataAgencia(int id_agencia,String nombre, String direccion,
+			String telefono) {
+		super();
+		this.idAgencia=id_agencia;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.telefono = telefono;
+	}
+	
 	public int getIdAgencia() {
 		return idAgencia;
 	}
