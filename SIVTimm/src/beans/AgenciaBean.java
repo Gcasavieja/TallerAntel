@@ -5,6 +5,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+
 import datatypes.DataAgencia;
 import datatypes.DataResultadoAgencia;
 import excepciones.PersistenciaException;
@@ -23,17 +24,10 @@ public class AgenciaBean {
 	private FacesMessage facesMessage;
 	private String msgingresar;
 	
-	private UIComponent btnAltaAgencia;
 	
-	
-
-
 	public AgenciaBean() {
 		super();
-		this.id_agencia = id_agencia;
-		this.nombre = nombre;
-		this.direccion = direccion;
-		this.telefono = telefono;
+
 		agenciaManager = new AgenciaManager();
 		
 		faceContext=FacesContext.getCurrentInstance();
@@ -89,37 +83,48 @@ public class AgenciaBean {
 			
 
 		if (dra != null) {
-			if (dra.getIdAgencia() != -1) {
+			if (dra.getIdAgencia() != -1 && dra.getIdAgencia() != -2) {
 				msgingresar = "Se ingresó agencia con numero " + dra.getIdAgencia()
 						+ " al sistema.";
 				facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 						"Mensaje: ", msgingresar);
 				//faceContext.addMessage(null, facesMessage);
-				faceContext.addMessage(btnAltaAgencia.getClientId(faceContext), facesMessage);
+				faceContext.addMessage(null, facesMessage);
 				
 				resultado = "inicio";
 				
 				reset();
-			} else {
-				msgingresar = "No fue posible ingresar la información de la agencia. Verifique los datos.";
-				facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+			} else 
+				if (dra.getIdAgencia() == -2) {
+					msgingresar = "Ya existe una agencia con estos datos. ";
+					facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+							"Mensaje: ", msgingresar);
+					//faceContext.addMessage(null, facesMessage);
+					faceContext.addMessage(null, facesMessage);
+					
+					resultado = "altaagencia";
+					
+				}
+				else
+				{
+					msgingresar = "No fue posible ingresar la información de la agencia a la base.";
+					facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 						"Mensaje: ", msgingresar);
-				faceContext.addMessage(btnAltaAgencia.getClientId(faceContext), facesMessage);
+					faceContext.addMessage(null, facesMessage);
 				
-				resultado = "altaagencia";
+					resultado = "altaagencia";
 
-			}
+				}
 		} 
 		else
 		{
 			msgingresar = "No fue posible ingresar la información de la agencia. Error de acceso a la base.";
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"Mensaje: ", msgingresar);
-			faceContext.addMessage(btnAltaAgencia.getClientId(faceContext), facesMessage);
+			faceContext.addMessage(null, facesMessage);
 			resultado = "altaagencia";
 		}
 		
-
 		faceContext.getExternalContext().getFlash().setKeepMessages(true);
 		return resultado;
 
@@ -132,12 +137,5 @@ public class AgenciaBean {
 		
 	}
 	
-	public UIComponent getBtnAltaAgencia() {
-		return btnAltaAgencia;
-	}
 
-
-	public void setBtnAltaAgencia(UIComponent btnAltaAgencia) {
-		this.btnAltaAgencia = btnAltaAgencia;
-	}
 }

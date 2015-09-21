@@ -18,31 +18,30 @@ import datatypes.DataTicket;
 
 public class FachadaPersistencia {
 
-	private Connection cn = null;
+	private DataSource dataSource = null;
 	private Consultas consultas = null;
+	private InitialContext context = null;
 	
 	
 	public FachadaPersistencia()
 	{
 		try {
 
-			InitialContext context = new InitialContext();
+			context = new InitialContext();
 			consultas = new Consultas();
-			DataSource dataSource = (DataSource) context
-					.lookup("java:jboss/datasources/mysqlDS");
-			cn = dataSource.getConnection();
+			dataSource = (DataSource) context
+					//.lookup("java:jboss/datasources/mysqlDS");
+					.lookup("java:/mysqlDS");
 			
 		} catch (NamingException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		} 
 	}
 	
 	public void altaTicket(DataTicket dt) throws SQLException
 	{
 		
-		Connection conexion = cn;
+		Connection conexion = dataSource.getConnection();
 
 		String sql = consultas.insertTicket();
 		PreparedStatement comando = conexion.prepareStatement(sql);
@@ -59,14 +58,15 @@ public class FachadaPersistencia {
 		
 		comando.execute();
 
-		cn.close();
+		comando.close();
+		conexion.close();
 		
 	}
 	
 	public int altaAgencia(DataAgencia da) throws SQLException
 	{
 		int claveGenerada=-1;
-		Connection conexion = cn;
+		Connection conexion = dataSource.getConnection();
 
 		String sql = consultas.insertAgencia();
 		PreparedStatement  comando= conexion.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -85,14 +85,57 @@ public class FachadaPersistencia {
 		}
 		
 
-		cn.close();
+		comando.close();
+		conexion.close();
 		
 		return claveGenerada;
 	}
 
-	public boolean existeAgencia(int idAgencia) {
+	public boolean existeAgencia(String nombreAgencia, String telefono) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		boolean existe = false;
+		Connection conexion = dataSource.getConnection();
+
+		String sql = consultas.existAgencia();
+		PreparedStatement  comando= conexion.prepareStatement(sql);
+		
+		comando.setString(1, nombreAgencia);
+		comando.setString(2, telefono);
+		
+		ResultSet rs = comando.executeQuery();
+		
+		if(rs.next())
+		{
+			existe = true;
+		}
+		
+		comando.close();
+		conexion.close();
+		
+		return existe;
+	}
+
+	public boolean existeAgenciaId(int idAgencia) throws SQLException {
+		// TODO Auto-generated method stub
+		boolean existe = false;
+		Connection conexion = dataSource.getConnection();
+
+		String sql = consultas.existAgenciaId();
+		PreparedStatement  comando= conexion.prepareStatement(sql);
+		
+		comando.setInt(1, idAgencia);
+		
+		ResultSet rs = comando.executeQuery();
+		
+		if(rs.next())
+		{
+			existe = true;
+		}
+		
+		comando.close();
+		conexion.close();
+		
+		return existe;
 	}
 	
 }

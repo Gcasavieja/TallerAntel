@@ -3,9 +3,10 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
 
-<head>
+<h:head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
@@ -13,7 +14,13 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Free Multipurpose Template : RUMA</title>
+    <title>SIVT - IMM</title>
+    <style type="text/css">
+            .ui-growl{
+                right: 20px;
+				top: 15%;
+            }
+        </style>
     <!-- BOOTSTRAP CORE STYLE CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLE CSS -->
@@ -22,12 +29,13 @@
     <link href="assets/css/style.css" rel="stylesheet" />    
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
-</head>
-<body> 
+	
+</h:head>
+<h:body> 
 
 
 <div class="navbar navbar-inverse navbar-fixed-top" >
+
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -60,6 +68,7 @@
    <!--/.NAVBAR END-->
    
    <section id="home" class="head-main-img">
+   <p:growl id="growl" showDetail="true" life="3000" redisplay="false" />
          
                <div class="container">
            <div class="row text-center pad-row" >
@@ -105,13 +114,13 @@
 						
 					</div>
 
+					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-8">
 							<h:commandButton class="btn btn-default" id="btnAltaAgencia"
 												value="Ingresar" type="submit"
-												binding="#{agenciaBean.btnAltaAgencia}"
-												action="#{agenciaBean.ingresarAgencia()}" />
-												<h:message for="btnAltaAgencia" />
+												action="#{agenciaBean.ingresarAgencia()}" update="growl"/>
+												
 						</div>
 					</div>
 				</h:form>
@@ -132,5 +141,5 @@
 
 
 
-</body> 
+</h:body> 
 </html>

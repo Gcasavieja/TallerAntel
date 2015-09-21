@@ -2,9 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
 
-<head>
+<h:head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
@@ -12,7 +13,13 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Free Multipurpose Template : RUMA</title>
+    <title>SIVT - IMM</title>
+    <style type="text/css">
+            .ui-growl{
+                right: 20px;
+				top: 15%;
+            }
+        </style>
     <!-- BOOTSTRAP CORE STYLE CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLE CSS -->
@@ -21,11 +28,14 @@
     <link href="assets/css/style.css" rel="stylesheet" />    
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
-</head>
-<body >
+	
+</h:head>
+<h:body >
+    <p:growl id="growl" showDetail="true" life="3000" redisplay="false" />
+    
     
     <div class="navbar navbar-inverse navbar-fixed-top" >
+    
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -66,27 +76,21 @@
 
                             <img src="assets/img/1.jpg" alt="" />
                             <div class="carousel-caption" >
-                                <h4 class="back-light">Aenean faucibus luctus enim. Duis quis sem risu suspend lacinia elementum nunc.</h4>
+                                <h4 class="back-light">Sistema Integral de Venta de Tickets de Estacionamiento.</h4>
                             </div>
                         </div>
                         <div class="item">
                             <img src="assets/img/2.jpg" alt="" />
                             <div class="carousel-caption ">
-                                <h4 class="back-light">Aenean faucibus luctus enim. Duis quis sem risu suspend lacinia elementum nunc.</h4>
+                                <h4 class="back-light">Aplicación desarrollada para la Intendencia Municipal de Montevideo.</h4>
                             </div>
                         </div>
-                        <div class="item">
-                            <img src="assets/img/3.jpg" alt="" />
-                            <div class="carousel-caption ">
-                                <h4 class="back-light">Aenean faucibus luctus enim. Duis quis sem risu suspend lacinia elementum nunc.</h4>
-                            </div>
-                        </div>
+                        
                     </div>
 
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel-example" data-slide-to="1"></li>
-                        <li data-target="#carousel-example" data-slide-to="2"></li>
                     </ol>
                 </div>
            
@@ -280,5 +284,6 @@
     <script src="assets/plugins/bootstrap.js"></script>
   <!-- CUSTOM SCRIPTS  -->
     <script src="assets/js/custom.js"></script>
-</body>
+    
+</h:body>
 </html>

@@ -19,7 +19,10 @@ public class AgenciaManager {
 	{
 		DataResultadoAgencia dra = null;
 		try {
-			int idAgencia = persistencia.altaAgencia(da);
+			int idAgencia = -2;
+			if(!persistencia.existeAgencia(da.getNombre(),da.getTelefono()))
+				idAgencia = persistencia.altaAgencia(da);
+			
 			dra = new DataResultadoAgencia(idAgencia, true);
 		} catch (SQLException e) {
 			

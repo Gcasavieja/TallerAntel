@@ -19,25 +19,26 @@ public class TicketManager {
 		String mensaje="";
 		DataResultadoTicket resu=null;
 		DataTicket dtSalida; 
-		boolean existe = persistencia.existeAgencia(dtEntrada.getIdAgencia());
-		if(existe)
-		{
-			try {
+		boolean existe;
+		try {
+			existe = persistencia.existeAgenciaId(dtEntrada.getIdAgencia());
+			if(existe)
+			{
 				persistencia.altaTicket(dtEntrada);
-				resu = new DataResultadoTicket("Ok", true);
+				resu = new DataResultadoTicket("Se ingresó ticket.", true);
 				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				mensaje = e.getMessage();
+			}
+			else
+			{
+				mensaje = "No existe la agencia.";
 				resu = new DataResultadoTicket(mensaje, false);
 			}
-			
-		}
-		else
-		{
-			mensaje = "No existe la agencia.";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			mensaje = e.getMessage();
 			resu = new DataResultadoTicket(mensaje, false);
 		}
+		
 		
 		return resu;
 	}
